@@ -102,9 +102,10 @@ header h1 {
 
 .keycase-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 35px; /* 上部の金具がはみ出るため少し広めの余白 */
+    grid-template-columns: repeat(2, 1fr); /* ★ 1fr から repeat(2, 1fr) に変更 */
+    gap: 35px 15px; /* ★ 上下の余白(35px)と、左右の余白(15px)を指定 */
     padding-top: 20px;
+    justify-items: center; /* ★ 追加：2列の中で各キーケースを中央寄せにする */
 }
 
 /* キーケースのカード外枠 */
