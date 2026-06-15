@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>革のキーケース パスワード管理</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="lock-screen" class="screen">
+        <div class="lock-box">
+            <h2>🔑 本人確認</h2>
+            <p>マスターキーワードを入力してください</p>
+            <input type="password" id="master-password-input" placeholder="キーワードを入力...">
+            <button id="login-btn">解除する</button>
+            <p id="error-message" class="error"></p>
+        </div>
+    </div>
+
+    <div id="main-screen" class="screen hidden">
+        <header>
+            <h1>My Keycases</h1>
+            <p>タップするとキーケースが開きます</p>
+        </header>
+
+        <div id="keycase-container" class="keycase-grid">
+            </div>
+    </div>
+
+    <script href="app.js" src="app.js"></script>
+</body>
+</html>
