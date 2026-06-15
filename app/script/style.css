@@ -140,6 +140,8 @@ header h1 {
 /* 表・裏共通ルール */
 .keycase-front, .keycase-back {
     position: absolute;
+    top: 0;  /* ← ★この1行を追加 */
+    left: 0; /* ← ★この1行を追加 */
     width: 100%;
     height: 100%;
     backface-visibility: hidden; /* ひっくり返った時に裏面を隠す */
