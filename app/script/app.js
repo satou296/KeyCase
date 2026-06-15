@@ -1,10 +1,9 @@
 // ==========================================
 // 1. 設定・テスト用データ
 // ==========================================
-// アプリを開くためのマスターキーワード
-const MASTER_PASSWORD = "open123"; 
+const MASTER_PASSWORD = "open123"; // アプリを開くためのマスターキーワード
 
-// 保存されているパスワードデータ（本来は暗号化して保存します）
+// 保存されているパスワードデータ
 const passwordData = [
     { id: 1, label: "Google アカウント", password: "G-Pass**87" },
     { id: 2, label: "Amazon.co.jp", password: "Amz-Secret99" },
@@ -33,10 +32,8 @@ function checkMasterPassword() {
     const inputVal = passwordInput.value;
     
     if (inputVal === MASTER_PASSWORD) {
-        // ロック画面を隠し、メイン画面を表示
         lockScreen.classList.add('hidden');
         mainScreen.classList.remove('hidden');
-        // キーケース一覧を画面に生成
         renderKeycases();
     } else {
         errorMessage.textContent = "キーワードが正しくありません。";
@@ -51,25 +48,33 @@ function renderKeycases() {
     keycaseContainer.innerHTML = ""; // 初期化
 
     passwordData.forEach(item => {
-        // カード全体の要素を作成
         const card = document.createElement('div');
         card.className = 'keycase-card';
 
+        // CSSの装飾クラス（metal-hook, leather-loop, keys-containerなど）をすべて反映
         card.innerHTML = `
             <div class="keycase-label">${item.label}</div>
             <div class="keycase-wrapper">
                 <div class="keycase-front">
-                    <img src="images/closed.png" alt="🔒 閉じたキーケース" class="keycase-img" onerror="this.style.display='none';">
-                    <span style="color:white; font-size:40px; position:absolute;">🔑</span>
+                    <div class="metal-hook"></div>
+                    <div class="leather-loop"></div>
+                    <img src="images/closed.png" alt="🔒" class="keycase-img" onerror="this.style.display='none';">
                 </div>
                 <div class="keycase-back">
-                    <img src="images/open.png" alt="🔓 開いたキーケース" class="keycase-img" onerror="this.style.display='none';">
-                    <div class="password-display" style="position:absolute;">${item.password}</div>
+                    <div class="metal-plate"></div>
+                    <div class="keys-container">
+                        <div class="css-key">
+                            <div class="css-key-head"></div>
+                            <div class="css-key-shaft"></div>
+                        </div>
+                    </div>
+                    <img src="images/open.png" alt="🔓" class="keycase-img" onerror="this.style.display='none';">
+                    <div class="password-display">${item.password}</div>
                 </div>
             </div>
         `;
 
-        // クリックしたときに「is-open」クラスをつけ外しする（開閉アニメーションのトリガー）
+        // クリックで開閉
         card.addEventListener('click', () => {
             card.classList.toggle('is-open');
         });
